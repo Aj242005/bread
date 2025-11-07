@@ -1,8 +1,7 @@
 #ifndef BREAD_LEXER_H
 #define BREAD_LEXER_H
 
-#include <standard-constants-main.h>
-
+#include <bread-utilities.h>
 using namespace std;
 
 

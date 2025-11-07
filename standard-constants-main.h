@@ -1,9 +1,8 @@
 #ifndef STANDARD_CONSTANTS_MAIN_H
 #define STANDARD_CONSTANTS_MAIN_H
 
-#include <iostream>
-#include <bits/stdc++.h>
-#include <string>
+#include <dependencies.h>
+
 using namespace std;
 
 const vector<string> keywords = { 

@@ -1,6 +1,6 @@
-#include <iostream>
-#include <bits/stdc++.h>
+#include <dependencies.h>
 
+//please make sure that the language have each space with each word and each of the individual string
 
 using namespace std;
 
@@ -15,6 +15,9 @@ int main(int argc, char* argv[]){
             return 1;
         }
         else{
+            if(argv[1]){
+                
+            }
             cout<<"The name of the bread file is : "<<argv[1]<<endl;
             return 0;
         }

@@ -2,8 +2,6 @@
 #define BREAD_UTILITIES_H
 
 #include <standard-constants-main.h>
-#include <string>
-#include <string.h>
 
 using namespace std;
 
@@ -24,5 +22,24 @@ char getTerminator(){
     return terminator;
 }
 
+vector<string> removeSpacesFromInput(string s){
+    vector<string> noSpace;
+    string buffer = "";
+    for(auto i : s){
+        if(i != ' '){
+            buffer += i;
+        }
+        else{
+            if(buffer.length()){
+                noSpace.push_back(buffer);
+            }
+            buffer = "";
+        }
+    }
+    if(buffer.length()){
+        noSpace.push_back(buffer);
+    }
+    return noSpace;
+} 
 
 #endif
