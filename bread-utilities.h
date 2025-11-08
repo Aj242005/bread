@@ -71,16 +71,7 @@ vector<string> removeSpacesFromInput(string s){
     string buffer = "";
     for(auto i : s){
         if(i != ' '){
-            string insitu = "";
-            insitu +=i;
-            if(findUnaryOperator(insitu) || findBinaryOperator(insitu)){
-                if(buffer.length()){
-                    noSpace.push_back(buffer);
-                }
-            }
-            else{
-                buffer += i;
-            }
+            buffer += i;
         }
         else{
             if(buffer.length()){
