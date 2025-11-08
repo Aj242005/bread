@@ -1,12 +1,12 @@
-#include <dependencies.h>
-
+#include "dependencies.h"
+#include "bread-utilities.h"
 //please make sure that the language have each space with each word and each of the individual string
 
 using namespace std;
 
 int main(int argc, char* argv[]){
     if(argc <= 1){
-        cout<<"Missing compilation file"<<endl;
+        cout<<"Error : Missing compilation file"<<endl;
         return 1;
     }
     else{
@@ -15,10 +15,24 @@ int main(int argc, char* argv[]){
             return 1;
         }
         else{
-            if(argv[1]){
-                
+            int length = strlen(argv[1]);
+            if(argv[1][length-1] != 'd' || argv[1][length-2] != 'b' || argv[1][length-3] != '.' ){
+                cout<<"Error (001) : Not a valid File format, use .bd as the file extension"<<endl;
+                return 1;
             }
-            cout<<"The name of the bread file is : "<<argv[1]<<endl;
+
+            fstream breadFile(argv[1]);
+            string codeLine;
+            if(!breadFile.is_open()){
+                cout<<"Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted"<<endl;
+                return 1;
+            }
+            while( getline(breadFile,codeLine)){
+                for(auto i : removeSpacesFromInput(codeLine) ){
+                    cout<<i<<endl;
+                }
+                cout<<"End of line"<<endl;
+            }
             return 0;
         }
     }

@@ -1,7 +1,7 @@
 #ifndef STANDARD_CONSTANTS_MAIN_H
 #define STANDARD_CONSTANTS_MAIN_H
 
-#include <dependencies.h>
+#include "dependencies.h"
 
 using namespace std;
 
@@ -106,6 +106,6 @@ const vector<string> binary_operators = {
     "[]"
 };
 
-const char terminator = '/~';
+const string terminator = "/~";
 
 #endif
