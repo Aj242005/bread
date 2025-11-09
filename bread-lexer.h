@@ -30,9 +30,17 @@ vector<pair<string,string>> lexingTheStringTokens(vector<string> tokens){
             lexerMap.push_back(token);
         }
         else{
-            token.first = i;
-            token.second = "Identifier";
-            lexerMap.push_back(token);
+            try{
+                float number = stof(i);
+                token.first = i;
+                token.second = "Number";
+                lexerMap.push_back(token);
+            }
+            catch(exception err){
+                token.first = i;
+                token.second = "Identifier";
+                lexerMap.push_back(token);
+            }
         }
     }
 
