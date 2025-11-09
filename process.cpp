@@ -1,5 +1,5 @@
 #include "dependencies.h"
-#include "bread-utilities.h"
+#include "bread-lexer.h"
 //please make sure that the language have each space with each word and each of the individual string
 
 using namespace std;
@@ -28,8 +28,8 @@ int main(int argc, char* argv[]){
                 return 1;
             }
             while( getline(breadFile,codeLine)){
-                for(auto i : removeSpacesFromInput(codeLine) ){
-                    cout<<i<<endl;
+                for(auto i : lexingTheStringTokens(removeSpacesFromInput(codeLine))){
+                    cout<<"{ "<<i.first<<" : "<<"'"<<i.second<<"' "<<"}"<<endl;
                 }
                 cout<<"End of line"<<endl;
             }

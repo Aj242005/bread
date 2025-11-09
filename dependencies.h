@@ -13,7 +13,10 @@
 #include <string.h>
 #include <ostream>
 #include <istream>
-
-
+#include <typeinfo>
+#include <typeindex>
+#include <stdlib.h>
+#include <sstream>
+#include <cstdlib>
 
 #endif

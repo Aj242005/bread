@@ -106,6 +106,6 @@ const vector<string> binary_operators = {
     "[]"
 };
 
-const string terminator = "/~";
+const string terminator = ">~";
 
 #endif

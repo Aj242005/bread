@@ -5,9 +5,38 @@
 using namespace std;
 
 
-map<string,string> lexingTheStringTokens(vector<string> tokens){
-    map<string,string> lexerMap;
-    
+vector<pair<string,string>> lexingTheStringTokens(vector<string> tokens){
+    vector<pair<string,string>> lexerMap;
+    for(auto i : tokens){
+        pair<string,string> token;
+        if(findKeywords(i)){
+            token.first = i;
+            token.second = "Keyword";
+            lexerMap.push_back(token);
+        }
+        else if(findBinaryOperator(i)){
+            token.first = i;
+            token.second = "Binary Operator";
+            lexerMap.push_back(token);
+        }
+        else if(findUnaryOperator(i)){
+            token.first = i;
+            token.second = "Unary Operator";
+            lexerMap.push_back(token);
+        }
+        else if(findTerminator(i)){
+            token.first = i;
+            token.second = "Terminator";
+            lexerMap.push_back(token);
+        }
+        else{
+            token.first = i;
+            token.second = "Identifier";
+            lexerMap.push_back(token);
+        }
+    }
+
+    return lexerMap;
 }
 
 

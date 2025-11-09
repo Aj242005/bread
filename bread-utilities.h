@@ -66,23 +66,15 @@ bool findTerminator(string s){
 }
 
 
-vector<string> removeSpacesFromInput(string s){
-    vector<string> noSpace;
-    string buffer = "";
-    for(auto i : s){
-        if(i != ' '){
-            buffer += i;
-        }
-        else{
-            if(buffer.length()){
-                noSpace.push_back(buffer);
-            }
-            buffer = "";
-        }
-    }
-    if(buffer.length()){
+vector<std::string> removeSpacesFromInput(string s) {
+    vector<std::string> noSpace;
+    stringstream ss(s);
+    string buffer;
+    
+    while (ss >> buffer) { 
         noSpace.push_back(buffer);
     }
+    
     return noSpace;
 } 
 

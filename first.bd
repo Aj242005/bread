@@ -1,2 +1,6 @@
-int value = 20
+int value = 30000
+float blaBla = 20.2
 my name is hello
+
+
+//refer this https://pgrandinetti.github.io/compilers/page/design-a-new-formal-grammar/
