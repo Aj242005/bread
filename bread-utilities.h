@@ -6,7 +6,7 @@
 using namespace std;
 
 
-unordered_map<string, string> getTokens(){
+unordered_map<string, TokenInfo> getTokens(){
     return tokens;
 }
 
@@ -23,9 +23,16 @@ bool findTerminator(string s){
     return s == terminator;
 }
 
+// e.g. getTokenName("<") -> "less than"
 string getTokenName(string s){
     auto it = tokens.find(s);
-    return (it != tokens.end()) ? it->second : "unknown";
+    return (it != tokens.end()) ? it->second.name : "unknown";
+}
+
+// e.g. getTokenCategory("<") -> "Binary Operator"
+string getTokenCategory(string s){
+    auto it = tokens.find(s);
+    return (it != tokens.end()) ? it->second.category : "unknown";
 }
 
 vector<string> removeSpacesFromInput(string s) {
