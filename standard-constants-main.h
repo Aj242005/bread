@@ -21,7 +21,7 @@ const unordered_map<string, TokenInfo> tokens = {
     {"double", {"Keyword", "64 bit decimal number"}},
     {"bool", {"Keyword", "boolean type variable"}},
     {"char", {"Keyword", "individual character"}},
-    {"String", {"Keyword", "sequence of characters"}},
+    {"str", {"Keyword", "sequence of characters"}},
     {"Large", {"Keyword", "long integer type"}},
     {"if", {"Keyword", "conditional if"}},
     {"else", {"Keyword", "conditional else"}},
@@ -58,7 +58,7 @@ const unordered_map<string, TokenInfo> tokens = {
     {"undenfinied", {"Keyword", "undefined value"}},
     {"null", {"Keyword", "null value"}},
     {"about_author", {"Keyword", "author metadata keyword"}},
-
+    {"String Literal",{"Literal", "String token"}},
     // ---- unary operators ----
     {"--", {"Unary Operator", "decrement"}},
     {"++", {"Unary Operator", "increment"}},
@@ -114,7 +114,8 @@ const unordered_map<string, TokenInfo> tokens = {
     {"[]", {"Binary Operator", "empty bracket"}},
 
     // ---- terminator ----
-    {">~", {"Terminator", "statement terminator"}}
+    {">~", {"Terminator", "statement terminator"}},
+    {"#",{"Comment","Comment starter"}}
 };
 
 // Kept as a plain constant too, for direct end-of-statement comparisons

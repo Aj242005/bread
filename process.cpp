@@ -17,15 +17,13 @@ int main(int argc, char* argv[]){
         else{
             int length = strlen(argv[1]);
             if(argv[1][length-1] != 'd' || argv[1][length-2] != 'b' || argv[1][length-3] != '.' ){
-                cout<<"Error (001) : Not a valid File format, use .bd as the file extension"<<endl;
-                return 1;
+                throw invalid_argument("Error (001) : Not a valid File format, use .bd as the file extension");
             }
 
             fstream breadFile(argv[1]);
             string codeLine;
             if(!breadFile.is_open()){
-                cout<<"Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted"<<endl;
-                return 1;
+                throw invalid_argument("Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted");
             }
             while( getline(breadFile,codeLine)){
                 for(auto i : lexingTheStringTokens(removeSpacesFromInput(codeLine))){
