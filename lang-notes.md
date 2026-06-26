@@ -6,7 +6,7 @@ Some lang postulates :-
 
 
 Errors:
-IncorrectExecutionError : 001 : Not a valid File format, use .bd as the file extension,
-IncorrectExecutionError : 002 : Error opening the file, either the file do not exist or the file you want to compile is corrupted,
-SyntaxError : 003 : Not a valid String Literal, incomplete '\"', it must be used in pairs,
-SyntaxError : 004 : 'given-token' is not a valid number or identifier
+1. IncorrectExecutionError : 001 : Not a valid File format, use .bd as the file extension,
+2. IncorrectExecutionError : 002 : Error opening the file, either the file do not exist or the file you want to compile is corrupted,
+3. SyntaxError : 003 : Not a valid String Literal, incomplete '\"', it must be used in pairs,
+4. SyntaxError : 004 : 'given-token' is not a valid number or identifier
