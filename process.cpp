@@ -1,5 +1,6 @@
 #include "dependencies.h"
 #include "bread-lexer.h"
+#include "custom-exceptions.h"
 //please make sure that the language have each space with each word and each of the individual string
 
 using namespace std;
@@ -17,13 +18,13 @@ int main(int argc, char* argv[]){
         else{
             int length = strlen(argv[1]);
             if(argv[1][length-1] != 'd' || argv[1][length-2] != 'b' || argv[1][length-3] != '.' ){
-                throw invalid_argument("Error (001) : Not a valid File format, use .bd as the file extension");
+                throw IncorrectExecutionError("Error (001) : Not a valid File format, use .bd as the file extension");
             }
 
             fstream breadFile(argv[1]);
             string codeLine;
             if(!breadFile.is_open()){
-                throw invalid_argument("Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted");
+                throw IncorrectExecutionError("Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted");
             }
             while( getline(breadFile,codeLine)){
                 for(auto i : lexingTheStringTokens(removeSpacesFromInput(codeLine))){

@@ -18,5 +18,6 @@
 #include <stdlib.h>
 #include <sstream>
 #include <cstdlib>
+#include <exception>
 
 #endif
