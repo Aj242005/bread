@@ -37,10 +37,42 @@ string getTokenCategory(string s){
 
 vector<string> removeSpacesFromInput(string s) {
     vector<string> noSpace;
-    stringstream ss(s);
     string buffer;
+    bool insideQuotes = false;
+    char quoteChar = '\0';
 
-    while (ss >> buffer) {
+    for (size_t i = 0; i < s.length(); i++) {
+        char c = s[i];
+
+        if (insideQuotes) {
+            buffer += c;
+            if (c == quoteChar) {            // found the matching closing quote
+                noSpace.push_back(buffer);   // the whole quoted span is one token
+                buffer.clear();
+                insideQuotes = false;
+            }
+        }
+        else if (c == '"' || c == '\'') {
+            if (!buffer.empty()) {           // flush whatever came before the quote
+                noSpace.push_back(buffer);
+                buffer.clear();
+            }
+            insideQuotes = true;
+            quoteChar = c;
+            buffer += c;
+        }
+        else if (isspace(static_cast<unsigned char>(c))) {
+            if (!buffer.empty()) {
+                noSpace.push_back(buffer);
+                buffer.clear();
+            }
+        }
+        else {
+            buffer += c;
+        }
+    }
+
+    if (!buffer.empty()) {       // leftover token at end of line (or unterminated quote)
         noSpace.push_back(buffer);
     }
 
