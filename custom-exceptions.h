@@ -16,6 +16,17 @@ class IncorrectExecutionError : public exception {
         }
 };
 
+class SyntaxError : public exception {
+    private:
+        string errText;
+    public:
+        SyntaxError( string msg ) : errText(msg) {}
+
+        const char* what() const noexcept override{
+            return errText.c_str();
+        }
+};
+
 
 
 

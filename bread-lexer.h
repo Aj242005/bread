@@ -2,6 +2,7 @@
 #define BREAD_LEXER_H
 
 #include "bread-utilities.h"
+#include "custom-exceptions.h"
 using namespace std;
 
 
@@ -15,7 +16,7 @@ vector<pair<string,string>> lexingTheStringTokens(vector<string> rawTokens){
         }
         else if(i[0] == '"'){
             cout<<""<<endl;
-            throw runtime_error("Error (003) : Not a valid String Literal, incomplete '\"', it must be used in pairs");
+            throw SyntaxError("Error (003) : Not a valid String Literal, incomplete '\"', it must be used in pairs");
         }
         else if(findToken(i)){
             token.first = i;
