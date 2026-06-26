@@ -1,7 +1,7 @@
 #ifndef CUSTOM_EXCEPTIONS_H
 #define CUSTOM_EXCEPTIONS_H
 
-#include <dependencies.h>
+#include "dependencies.h"
 using namespace std;
 
 class IncorrectExecutionError : public exception {

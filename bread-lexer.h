@@ -5,32 +5,69 @@
 #include "custom-exceptions.h"
 using namespace std;
 
-
-vector<pair<string,string>> lexingTheStringTokens(vector<string> rawTokens){
-    vector<pair<string,string>> lexerMap;
-    for(auto i : rawTokens){
-        pair<string,string> token;
-        if (i.length() >= 2 && i[0] == '"' && i[i.length() - 1] == '"') {
+vector<pair<string, string>> lexingTheStringTokens(vector<string> rawTokens)
+{
+    vector<pair<string, string>> lexerMap;
+    for (auto i : rawTokens)
+    {
+        pair<string, string> token;
+        if ((i.length() >= 2 && i[0] == '"' && i[i.length() - 1] == '"') || (i.length() >= 2 && i[0] == '\'' && i[i.length() - 1] == '\''))
+        {
             token.first = i.substr(1, i.length() - 2);
             token.second = "String Literal";
         }
-        else if(i[0] == '"'){
-            cout<<""<<endl;
+        else if (i[0] == '"' || i[0] == '\'' || i[i.length() - 1] == '"' || i[i.length() - 1] == '\'')
+        {
+            cout << "" << endl;
             throw SyntaxError("Error (003) : Not a valid String Literal, incomplete '\"', it must be used in pairs");
         }
-        else if(findToken(i)){
+        else if (findToken(i))
+        {
             token.first = i;
             token.second = getTokenCategory(i);
         }
-        else{
-            try{
-                float number = stof(i);
+        else
+        {
+            size_t pos = 0;
+            bool isValidNumber = false;
+
+            try
+            {
+                stof(i, &pos);
+                isValidNumber = (pos == i.length()); // reject partial parses like "3.1.4"
+            }
+            catch (exception &err)
+            {
+                isValidNumber = false;
+            }
+
+            if (isValidNumber)
+            {
                 token.first = i;
                 token.second = "Number";
             }
-            catch(exception &err){
-                token.first = i;
-                token.second = "Identifier";
+            else
+            {
+                bool isValidIdentifier = !i.empty() &&
+                                         (isalpha(static_cast<unsigned char>(i[0])) || i[0] == '_');
+
+                for (size_t k = 1; k < i.length() && isValidIdentifier; k++)
+                {
+                    if (!(isalnum(static_cast<unsigned char>(i[k])) || i[k] == '_'))
+                    {
+                        isValidIdentifier = false;
+                    }
+                }
+
+                if (isValidIdentifier)
+                {
+                    token.first = i;
+                    token.second = "Identifier";
+                }
+                else
+                {
+                    throw SyntaxError("Error (004) : '" + i + "' is not a valid number or identifier");
+                }
             }
         }
         lexerMap.push_back(token);
@@ -38,6 +75,5 @@ vector<pair<string,string>> lexingTheStringTokens(vector<string> rawTokens){
 
     return lexerMap;
 }
-
 
 #endif
