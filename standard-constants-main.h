@@ -45,7 +45,6 @@ const unordered_map<string, TokenInfo> tokens = {
     {"protected", {"Keyword", "protected access specifier"}},
     {"try", {"Keyword", "try block"}},
     {"catch", {"Keyword", "catch block"}},
-    {"except", {"Keyword", "exception block"}},
     {"const", {"Keyword", "constant declaration"}},
     {"rigid", {"Keyword", "immutable constant declaration"}},
     {"return", {"Keyword", "return statement"}},
@@ -58,7 +57,7 @@ const unordered_map<string, TokenInfo> tokens = {
     {"undenfinied", {"Keyword", "undefined value"}},
     {"null", {"Keyword", "null value"}},
     {"about_author", {"Keyword", "author metadata keyword"}},
-    {"String Literal",{"Literal", "String token"}},
+
     // ---- unary operators ----
     {"--", {"Unary Operator", "decrement"}},
     {"++", {"Unary Operator", "increment"}},

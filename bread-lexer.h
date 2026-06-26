@@ -5,8 +5,9 @@
 #include "custom-exceptions.h"
 using namespace std;
 
-vector<pair<string, string>> lexingTheStringTokens(vector<string> rawTokens)
+vector<pair<string, string>> lexingTheStringTokens(vector<string> rawTokens, int lineNumber = -1)
 {
+    string lineInfo = (lineNumber >= 0) ? (" (line " + to_string(lineNumber) + ")") : "";
     vector<pair<string, string>> lexerMap;
     for (auto i : rawTokens)
     {
@@ -18,8 +19,7 @@ vector<pair<string, string>> lexingTheStringTokens(vector<string> rawTokens)
         }
         else if (i[0] == '"' || i[0] == '\'' || i[i.length() - 1] == '"' || i[i.length() - 1] == '\'')
         {
-            cout << "" << endl;
-            throw SyntaxError("Error (003) : Not a valid String Literal, incomplete '\"', it must be used in pairs");
+            throw SyntaxError("Error (003) : Not a valid String Literal, incomplete '\"', it must be used in pairs" + lineInfo);
         }
         else if (findToken(i))
         {
@@ -66,7 +66,7 @@ vector<pair<string, string>> lexingTheStringTokens(vector<string> rawTokens)
                 }
                 else
                 {
-                    throw SyntaxError("Error (004) : '" + i + "' is not a valid number or identifier");
+                    throw SyntaxError("Error (004) : '" + i + "' is not a valid number or identifier" + lineInfo);
                 }
             }
         }

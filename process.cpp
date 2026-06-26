@@ -26,13 +26,22 @@ int main(int argc, char* argv[]){
             if(!breadFile.is_open()){
                 throw IncorrectExecutionError("Error (002) : Error opening the file, either the file do not exist or the file you want to compile is corrupted");
             }
+            int lineNumber = 0;
+            bool hadError = false;
             while( getline(breadFile,codeLine)){
-                for(auto i : lexingTheStringTokens(removeSpacesFromInput(codeLine))){
-                    cout<<"{ "<<i.first<<" : "<<"'"<<i.second<<"' "<<"}"<<endl;
+                lineNumber++;
+                try{
+                    for(auto i : lexingTheStringTokens(removeSpacesFromInput(codeLine), lineNumber)){
+                        cout<<"{ "<<i.first<<" : "<<"'"<<i.second<<"' "<<"}"<<endl;
+                    }
+                    cout<<"End of line"<<endl;
                 }
-                cout<<"End of line"<<endl;
+                catch(exception &e){
+                    cerr << e.what() << endl;
+                    hadError = true;
+                }
             }
-            return 0;
+            return hadError ? 1 : 0;
         }
     }
     return 0;
